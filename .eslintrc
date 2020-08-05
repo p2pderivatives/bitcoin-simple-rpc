@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "env": {
+    "jest": true,
+    "node": true
+  },
+  "globals": {
+    "BigInt": true
+  },
+  "rules": {
+    "prettier/prettier": ["error"],
+    "semi": [2, "never"],
+    "no-console": "error"
+  }
+}
