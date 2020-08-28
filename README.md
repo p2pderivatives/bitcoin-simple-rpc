@@ -12,6 +12,25 @@ const client = new Client({
 const address = await client.getNewAddress()
 ```
 
+## Usage with Tor
+
+The library can easily be used to communicate with a bitcoind node over Tor using a socks5 proxy.
+For example with [sock-proxy-agent](https://github.com/TooTallNate/node-socks-proxy-agent#readme):
+
+```typescript
+const proxyOptions = 'socks5h://127.0.0.1:9050'
+const httpsAgent = new SocksProxyAgent(proxyOptions)
+const config : ClientOption = {
+  baseURL: 'http://onionaddress.onion:port',
+  auth: {
+    username: 'user',
+    password: 'password',
+  },
+  httpAgent: httpsAgent,
+}
+const client = new Client(config)
+```
+
 ## Error handling
 
 The client throws four types of errors.
