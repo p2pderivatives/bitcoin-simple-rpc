@@ -1,4 +1,5 @@
-export type { Client, ClientOption } from './client'
+export type { ClientOption } from './client'
+export { Client } from './client'
 export {
   ConnectionError,
   BitcoinRpcError,
