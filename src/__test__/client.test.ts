@@ -210,4 +210,16 @@ describe('client test', () => {
       ConnectionError
     )
   })
+  test('load non existing wallet throws', async () => {
+    const walletClient = new Client({
+      baseURL: url,
+      auth,
+    })
+    await expect(walletClient.loadWallet('unknown')).rejects.toThrowError(
+      new BitcoinRpcError(
+        RPCErrorCode.RPC_WALLET_NOT_FOUND,
+        'Wallet unknown not found.'
+      )
+    )
+  })
 })
