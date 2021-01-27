@@ -135,6 +135,14 @@ export type DecodedRawTransaction = {
   vout: TxOut[]
 }
 
+export type GetDescriptorResult = {
+  descriptor: string
+  checksum: string
+  isrange: boolean
+  issolvable: boolean
+  hasprivatekeys: boolean
+}
+
 export interface FetchedRawTransaction extends DecodedRawTransaction {
   hex: string
   blockhash: string
@@ -183,11 +191,14 @@ export type GetAddressInfoResult = {
 }
 
 export type ImportMultiRequest = {
-  scriptPubKey: string | { address: string }
+  desc?: string
+  scriptPubKey?: string | { address: string }
   timestamp: number | 'now'
   redeemScript?: string
+  witnessScript?: string
   pubkeys?: string[]
   keys?: string[]
+  range: [number, number]
   internal?: boolean
   watchonly?: boolean
   label?: string
@@ -360,6 +371,11 @@ export type ReceivedByAddress = {
   address: string
   txids: string[]
 } & Received
+
+export type RescanBlockchainResult = {
+  start_height: number
+  stop_height: number
+}
 
 export type ScriptDecoded = {
   asm: string
