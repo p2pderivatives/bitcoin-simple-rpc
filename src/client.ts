@@ -340,9 +340,10 @@ export class Client {
 
   getTransaction = (
     txid: string,
-    include_watchonly?: boolean
+    include_watchonly?: boolean,
+    verbose?: boolean
   ): Promise<WalletTransaction> =>
-    this.makeCall('getTransaction', txid, include_watchonly)
+    this.makeCall('getTransaction', txid, include_watchonly, verbose)
 
   getTxOut = (
     txid: string,
@@ -429,13 +430,15 @@ export class Client {
   listReceivedByAddress = (
     minconf = 1,
     include_empty = false,
-    include_watchonly?: boolean
+    include_watchonly?: boolean,
+    address_filter?: string
   ): Promise<ReceivedByAddress[]> =>
     this.makeCall(
       'listReceivedByAddress',
       minconf,
       include_empty,
-      include_watchonly
+      include_watchonly,
+      address_filter
     )
 
   listSinceBlock = (
