@@ -12,7 +12,9 @@
     "build": "tsc",
     "prepare": "npm run build"
   },
-  "files": ["dist/**/*"],
+  "files": [
+    "dist/**/*"
+  ],
   "keywords": [],
   "author": "",
   "license": "MIT",
