@@ -13,6 +13,7 @@ import {
   FetchedRawTransaction,
   FundRawTxOptions,
   GetAddressInfoResult,
+  GetDescriptorResult,
   ImportMultiRequest,
   ListSinceBlockResult,
   ListTransactionsResult,
@@ -28,6 +29,7 @@ import {
   PrevTxOut,
   Received,
   ReceivedByAddress,
+  RescanBlockchainResult,
   ScriptDecoded,
   SigHashType,
   SignRawTxResult,
@@ -273,6 +275,9 @@ export class Client {
   getConnectionCount = (): Promise<number> =>
     this.makeCall('getConnectionCount')
 
+  getDescriptorInfo = (descriptor: string): Promise<GetDescriptorResult> =>
+    this.makeCall('getDescriptorInfo', descriptor)
+
   getDifficulty = (): Promise<number> => this.makeCall('getDifficulty')
 
   getMemoryInfo = (
@@ -498,6 +503,12 @@ export class Client {
 
   removePrunedFunds = (txid: string): Promise<void> =>
     this.makeCall('removePrunedFunds', txid)
+
+  rescanBlockchain = (
+    start_height?: number,
+    stop_height?: number
+  ): Promise<RescanBlockchainResult> =>
+    this.makeCall('rescanBlockchain', start_height, stop_height)
 
   sendMany = (
     dummy: '',
