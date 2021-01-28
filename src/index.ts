@@ -182,12 +182,23 @@ export type GetAddressInfoResult = {
   labels: { name: string; purpose: 'send' | 'receive' }[]
 }
 
+export type GetDescriptorResult = {
+  descriptor: string
+  checksum: string
+  isrange: boolean
+  issolvable: boolean
+  hasprivatekeys: boolean
+}
+
 export type ImportMultiRequest = {
+  desc?: string
   scriptPubKey: string | { address: string }
   timestamp: number | 'now'
   redeemScript?: string
+  witnessScript?: string
   pubkeys?: string[]
   keys?: string[]
+  range: number | [number, number]
   internal?: boolean
   watchonly?: boolean
   label?: string
@@ -368,6 +379,11 @@ export type ScriptDecoded = {
   reqSigs: number
   addresses: string[]
   ps2h?: string
+}
+
+export type RescanBlockchainResult = {
+  start_height: number
+  stop_height: number | undefined
 }
 
 export type SignRawTxResult = {
