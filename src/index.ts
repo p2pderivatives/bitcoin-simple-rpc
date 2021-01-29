@@ -201,6 +201,7 @@ export type ImportMultiRequest = {
   range: number | [number, number]
   internal?: boolean
   watchonly?: boolean
+  keypool?: boolean
   label?: string
 }
 
